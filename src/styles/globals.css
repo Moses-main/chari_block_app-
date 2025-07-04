@@ -1,0 +1,31 @@
+/* // ===============================
+// src/styles/globals.css
+// =============================== */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: "Inter", system-ui, sans-serif;
+  }
+
+  body {
+    @apply bg-gray-50 text-gray-900;
+  }
+}
+
+@layer components {
+  .card-gradient {
+    @apply bg-gradient-to-br from-white to-gray-50;
+  }
+
+  .charity-gradient {
+    @apply bg-gradient-to-r from-charity-500 to-primary-500;
+  }
+
+  .progress-bar {
+    @apply bg-gradient-to-r from-primary-500 to-charity-500;
+  }
+}
