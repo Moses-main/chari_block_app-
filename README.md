@@ -95,8 +95,8 @@ struct Donation {
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/your-username/charity-donation-platform
-cd charity-donation-platform
+git clone https://github.com/Moses-main/chari_block_app-.git
+cd chari_block_app-
 ```
 
 2. **Install dependencies**

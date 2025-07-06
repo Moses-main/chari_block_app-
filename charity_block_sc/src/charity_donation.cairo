@@ -1,10 +1,11 @@
-use starknet::ContractAddress;
+// use starknet::ContractAddress;
 
 #[starknet::contract]
 mod CharityDonationContract {
     use starknet::{
         ContractAddress, get_caller_address, get_block_timestamp, 
-        get_contract_address, contract_address_const
+        get_contract_address
+        //  contract_address_const
     };
     
     use starknet::storage::{
@@ -19,6 +20,7 @@ mod CharityDonationContract {
     // STRUCTS DEFINITIONS
     // ===============================
     
+    #[derive(Clone)]
     #[derive(Drop, Serde, starknet::Store)]
     pub struct Charity {
         pub name: ByteArray,
@@ -621,7 +623,7 @@ mod CharityDonationContract {
             self.assert_admin();
             self.is_paused.write(false);
             
-            self.emit(ContractUnpaused {paused_by: get_caller_address(),timestamp: get_block_timestamp(),});
+            self.emit(ContractUnpaused {unpaused_by: get_caller_address(),timestamp: get_block_timestamp(),});
         }
 
         fn update_platform_fee(ref self: ContractState, new_fee: u256) {
