@@ -2,7 +2,8 @@
 // src/utils/constants.ts
 // ===============================
 
-export const CONTRACT_ADDRESS = "0x..."; // Your deployed contract address
+export const CONTRACT_ADDRESS =
+  "0x07d22d21970a6cd6b9fd9dbdef451ff52dc315cda76910142517b034f95da85e"; // Your deployed contract address
 export const NETWORK = "sepolia-alpha";
 
 export const ROUTES = {
