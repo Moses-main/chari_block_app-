@@ -2,24 +2,6 @@
 
 import "./App";
 
-// import React, { useState } from "react";
-// import { Campaign, Donation } from "./types";
-// import { Header } from "./components/Header";
-// import { CampaignCard } from "./components/CampaignCard";
-// import { DonationModal } from "./components/DonationModal";
-// import { UserProfile } from "./components/UserProfile";
-// // import { useAccount, useDisconnect } from "@starknet-react/core";
-// import {
-//   Connector,
-//   useConnect,
-//   useAccount,
-//   useDisconnect,
-// } from "@starknet-react/core";
-// import { StarknetkitConnector, useStarknetkitConnectModal } from "starknetkit";
-
-// App.tsx
-
-import "./App";
 import React, { useState } from "react";
 import { Campaign, Donation } from "./types";
 import { Header } from "./components/Header";
@@ -35,9 +17,6 @@ import {
   Connector,
 } from "@starknet-react/core";
 import { StarknetkitConnector, useStarknetkitConnectModal } from "starknetkit";
-
-// import { formatDate } from "./utils/formatters";
-// import { Clock, DollarSign } from "lucide-react";
 
 // Mock data
 const initialCampaigns: Campaign[] = [
@@ -69,31 +48,6 @@ const App: React.FC = () => {
   const [donationAmount, setDonationAmount] = useState("");
   const [donationMessage, setDonationMessage] = useState("");
   const [showModal, setShowModal] = useState(false);
-
-  // const { address } = useAccount();
-  // const { disconnect } = useDisconnect();
-  // const { connect, connectors } = useConnect();
-  // const { starknetkitConnectModal } = useStarknetkitConnectModal({
-  //   connectors: connectors as StarknetkitConnector[],
-  // });
-
-  // const walletConnected = !!address;
-  // const userAddress = address || "";
-
-  // // 🟢 This replaces connectWallet from your old hook
-  // const connectWallet = async () => {
-  //   const { connector } = await starknetkitConnectModal();
-  //   if (!connector) return;
-  //   await connect({ connector: connector as Connector });
-  // };
-
-  // const { walletConnected, userAddress, connectWallet, disconnectWallet } =
-  //   useWallet();
-  // const { address } = useAccount();
-  // const { disconnect } = useDisconnect();
-
-  // const walletConnected = !!address;
-  // const userAddress = address || "";
 
   // =========================
   const { address } = useAccount();
@@ -177,39 +131,6 @@ const App: React.FC = () => {
             userAddress={userAddress}
           />
         )}
-
-        {/* {activeTab === "profile" && walletConnected && (
-          <div className="space-y-4">
-            <h2 className="text-2xl font-bold">Your Donations</h2>
-            {donations
-              .filter((d) => d.donor_address === userAddress)
-              .map((donation) => {
-                const campaign = campaigns.find(
-                  (c) => c.id === donation.campaign_id
-                );
-                return (
-                  <div
-                    key={donation.id}
-                    className="p-4 border border-gray-200 rounded-xl flex items-start space-x-4 bg-white"
-                  >
-                    <div className="bg-green-100 p-2 rounded-lg">
-                      <DollarSign className="h-5 w-5 text-green-600" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold">{campaign?.title}</h3>
-                      <p className="text-sm text-gray-600">
-                        {donationMessage && `"${donation.donor_message}"`}
-                      </p>
-                      <p className="text-xs text-gray-500 mt-2 flex items-center space-x-1">
-                        <Clock className="h-3 w-3" />
-                        <span>{formatDate(donation.timestamp)}</span>
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
-          </div>
-        )} */}
       </main>
 
       {showModal && selectedCampaign && (

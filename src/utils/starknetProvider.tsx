@@ -2,7 +2,7 @@ import { InjectedConnector } from "starknetkit/injected";
 import { StarknetConfig } from "@starknet-react/core";
 import { WebWalletConnector } from "starknetkit/webwallet";
 import { mainnet, sepolia } from "@starknet-react/chains";
-import { publicProvider } from "@starknet-react/core";
+import { publicProvider, voyager } from "@starknet-react/core";
 // import { voyager } from "@starknet-react/chains/explorers";
 
 type Props = { children: React.ReactNode };
@@ -23,7 +23,8 @@ function StarknetProvider({ children }: Props) {
       chains={[mainnet, sepolia]}
       provider={publicProvider()}
       connectors={connectors}
-      //   explorer={voyager}
+      explorer={voyager}
+      autoConnect
     >
       {children}
     </StarknetConfig>

@@ -2,15 +2,7 @@
 
 import React from "react";
 import { CheckCircle, Heart } from "lucide-react";
-// import { WalletConnectorModal } from "./modal/WalletConnector";
-// interface HeaderProps {
-//   walletConnected: boolean;
-//   userAddress: string;
-//   connectWallet: () => void;
-//   disconnectWallet: () => void;
-//   activeTab: string;
-//   setActiveTab: (tab: string) => void;
-// }
+
 interface HeaderProps {
   walletConnected: boolean;
   userAddress: string;
