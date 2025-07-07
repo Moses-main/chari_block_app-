@@ -7,7 +7,7 @@ import { publicProvider } from "@starknet-react/core";
 
 type Props = { children: React.ReactNode };
 
-function starknetProvider({ children }: Props) {
+function StarknetProvider({ children }: Props) {
   const connectors = [
     new InjectedConnector({
       options: { id: "argentX", name: "Ready Wallet (formerly Argent)" },
@@ -30,4 +30,4 @@ function starknetProvider({ children }: Props) {
   );
 }
 
-export default starknetProvider;
+export default StarknetProvider;
