@@ -13,6 +13,8 @@ mod CharityDonationContract {
         Map, StoragePathEntry
     };
 
+    use core::num::traits::Zero;
+
     // Import ERC20 interface for ETH transfers
     use openzeppelin::token::erc20::interface::{IERC20Dispatcher, IERC20DispatcherTrait};
 
@@ -20,8 +22,8 @@ mod CharityDonationContract {
     // STRUCTS DEFINITIONS
     // ===============================
     
-    #[derive(Clone)]
-    #[derive(Drop, Serde, starknet::Store)]
+    
+    #[derive(Drop, Serde, Clone, starknet::Store)]
     pub struct Charity {
         pub name: ByteArray,
         pub description: ByteArray,
@@ -315,8 +317,8 @@ mod CharityDonationContract {
             
             // Check if charity already exists
             let existing_charity = self.charities.entry(caller).read();
-            let zero_address = contract_address_const::<0>();
-            assert(existing_charity.wallet_address == zero_address, 'Charity already registered');
+            // let zero_address: ContractAddress = 0x0.try_into().unwrap();
+            assert(existing_charity.wallet_address.is_zero(), 'Charity already registered');
             
             let current_time = get_block_timestamp();
             let new_charity = Charity {
@@ -342,8 +344,8 @@ mod CharityDonationContract {
             self.assert_admin();
             
             let charity = self.charities.entry(charity_address).read();
-            let zero_address = contract_address_const::<0>();
-            assert(charity.wallet_address != zero_address, 'Charity does not exist');
+            // let zero_address: ContractAddress = 0x0.try_into().unwrap();            
+            assert(!charity.wallet_address.is_zero(), 'Charity does not exist');
             assert(!charity.is_verified, 'Charity already verified');
             
             // Create a new charity struct with is_verified set to true
@@ -411,7 +413,7 @@ mod CharityDonationContract {
                 campaigns_count: charity.campaigns_count + 1,
                 registration_date: charity.registration_date,
             };
-            self.charities.entry(caller).write(updated_charity);
+            self.charities.entry(caller).write(updated_charity.clone());
             
             // Store campaign mapping for charity
             self.charity_campaigns.entry((caller, updated_charity.campaigns_count - 1)).write(campaign_id);
@@ -679,7 +681,9 @@ mod CharityDonationContract {
             let current_time = get_block_timestamp();
             
             let mut i = 1;
-            loop {
+            
+            
+            while i != total_campaigns + 1 {
                 if i > total_campaigns {
                     break;
                 }
