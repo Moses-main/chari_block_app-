@@ -7,8 +7,8 @@ import { Campaign, Donation } from "./types";
 import { Header } from "./components/Header";
 import { CampaignCard } from "./components/CampaignCard";
 import { DonationModal } from "./components/DonationModal";
-import { useWallet } from "./hooks/useWallet";
 import { UserProfile } from "./components/UserProfile";
+import { useAccount, useDisconnect } from "@starknet-react/core";
 // import { formatDate } from "./utils/formatters";
 // import { Clock, DollarSign } from "lucide-react";
 
@@ -43,9 +43,13 @@ const App: React.FC = () => {
   const [donationMessage, setDonationMessage] = useState("");
   const [showModal, setShowModal] = useState(false);
 
-  const { walletConnected, userAddress, connectWallet, disconnectWallet } =
-    useWallet();
+  // const { walletConnected, userAddress, connectWallet, disconnectWallet } =
+  //   useWallet();
+  const { address } = useAccount();
+  const { disconnect } = useDisconnect();
 
+  const walletConnected = !!address;
+  const userAddress = address || "";
   const handleDonate = () => {
     if (!selectedCampaign || !donationAmount) return;
 
@@ -83,8 +87,7 @@ const App: React.FC = () => {
         setActiveTab={setActiveTab}
         walletConnected={walletConnected}
         userAddress={userAddress}
-        connectWallet={connectWallet}
-        disconnectWallet={disconnectWallet}
+        disconnectWallet={disconnect}
       />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

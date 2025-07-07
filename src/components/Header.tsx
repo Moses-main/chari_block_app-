@@ -1,12 +1,20 @@
 // components/Header.tsx
 
 import React from "react";
-import { Wallet, CheckCircle, Heart } from "lucide-react";
+import { CheckCircle, Heart } from "lucide-react";
+import { WalletConnectorModal } from "./modal/WalletConnector";
+// interface HeaderProps {
+//   walletConnected: boolean;
+//   userAddress: string;
+//   connectWallet: () => void;
+//   disconnectWallet: () => void;
+//   activeTab: string;
+//   setActiveTab: (tab: string) => void;
+// }
 
 interface HeaderProps {
   walletConnected: boolean;
   userAddress: string;
-  connectWallet: () => void;
   disconnectWallet: () => void;
   activeTab: string;
   setActiveTab: (tab: string) => void;
@@ -15,7 +23,7 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({
   walletConnected,
   userAddress,
-  connectWallet,
+  // connectWallet,
   disconnectWallet,
   activeTab,
   setActiveTab,
@@ -70,13 +78,7 @@ export const Header: React.FC<HeaderProps> = ({
                 </button>
               </div>
             ) : (
-              <button
-                onClick={connectWallet}
-                className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-lg font-medium hover:from-blue-700 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl flex items-center space-x-2"
-              >
-                <Wallet className="h-4 w-4" />
-                <span>Connect Wallet</span>
-              </button>
+              <WalletConnectorModal />
             )}
           </div>
         </div>
