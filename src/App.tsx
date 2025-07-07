@@ -2,13 +2,40 @@
 
 import "./App";
 
+// import React, { useState } from "react";
+// import { Campaign, Donation } from "./types";
+// import { Header } from "./components/Header";
+// import { CampaignCard } from "./components/CampaignCard";
+// import { DonationModal } from "./components/DonationModal";
+// import { UserProfile } from "./components/UserProfile";
+// // import { useAccount, useDisconnect } from "@starknet-react/core";
+// import {
+//   Connector,
+//   useConnect,
+//   useAccount,
+//   useDisconnect,
+// } from "@starknet-react/core";
+// import { StarknetkitConnector, useStarknetkitConnectModal } from "starknetkit";
+
+// App.tsx
+
+import "./App";
 import React, { useState } from "react";
 import { Campaign, Donation } from "./types";
 import { Header } from "./components/Header";
 import { CampaignCard } from "./components/CampaignCard";
 import { DonationModal } from "./components/DonationModal";
 import { UserProfile } from "./components/UserProfile";
-import { useAccount, useDisconnect } from "@starknet-react/core";
+
+// 🆕 ADD THESE for wallet management
+import {
+  useAccount,
+  useConnect,
+  useDisconnect,
+  Connector,
+} from "@starknet-react/core";
+import { StarknetkitConnector, useStarknetkitConnectModal } from "starknetkit";
+
 // import { formatDate } from "./utils/formatters";
 // import { Clock, DollarSign } from "lucide-react";
 
@@ -43,13 +70,48 @@ const App: React.FC = () => {
   const [donationMessage, setDonationMessage] = useState("");
   const [showModal, setShowModal] = useState(false);
 
+  // const { address } = useAccount();
+  // const { disconnect } = useDisconnect();
+  // const { connect, connectors } = useConnect();
+  // const { starknetkitConnectModal } = useStarknetkitConnectModal({
+  //   connectors: connectors as StarknetkitConnector[],
+  // });
+
+  // const walletConnected = !!address;
+  // const userAddress = address || "";
+
+  // // 🟢 This replaces connectWallet from your old hook
+  // const connectWallet = async () => {
+  //   const { connector } = await starknetkitConnectModal();
+  //   if (!connector) return;
+  //   await connect({ connector: connector as Connector });
+  // };
+
   // const { walletConnected, userAddress, connectWallet, disconnectWallet } =
   //   useWallet();
+  // const { address } = useAccount();
+  // const { disconnect } = useDisconnect();
+
+  // const walletConnected = !!address;
+  // const userAddress = address || "";
+
+  // =========================
   const { address } = useAccount();
   const { disconnect } = useDisconnect();
+  const { connect, connectors } = useConnect();
+  const { starknetkitConnectModal } = useStarknetkitConnectModal({
+    connectors: connectors as StarknetkitConnector[],
+  });
 
   const walletConnected = !!address;
   const userAddress = address || "";
+
+  const connectWallet = async () => {
+    const { connector } = await starknetkitConnectModal();
+    if (!connector) return;
+    await connect({ connector: connector as Connector });
+  };
+
   const handleDonate = () => {
     if (!selectedCampaign || !donationAmount) return;
 
@@ -87,6 +149,7 @@ const App: React.FC = () => {
         setActiveTab={setActiveTab}
         walletConnected={walletConnected}
         userAddress={userAddress}
+        connectWallet={connectWallet}
         disconnectWallet={disconnect}
       />
 
