@@ -28,6 +28,7 @@ export const Header: React.FC<HeaderProps> = ({
             <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-2 rounded-xl">
               <Heart className="h-8 w-8 text-white" />
             </div>
+
             <div>
               <h1 className="text-2xl font-bold text-gray-900">CharityChain</h1>
               <p className="text-sm text-gray-600">

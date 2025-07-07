@@ -1,4 +1,31 @@
-const CampaignDetails: React.FC<{
+import {
+  getProgressPercentage,
+  Campaign,
+  Donation,
+  // ConnectWallet,
+  getDaysRemaining,
+  formatEther,
+  formatDate,
+  // mockDonations,
+  // mockCampaigns,
+  // Charity,
+} from "../../hooks/ConnectWallet";
+
+import {
+  // Heart,
+  Users,
+  Target,
+  // Calendar,
+  // Wallet,
+  // Plus,
+  // Eye,
+  // ArrowRight,
+  // CheckCircle,
+  Clock,
+  DollarSign,
+} from "lucide-react";
+
+export const CampaignDetails: React.FC<{
   campaign: Campaign | null;
   donations: Donation[];
   isOpen: boolean;

@@ -1,4 +1,25 @@
-const CampaignCard: React.FC<{
+import {
+  Heart,
+  // Users,
+  // Target,
+  // Calendar,
+  // Wallet,
+  // Plus,
+  Eye,
+  // ArrowRight,
+  CheckCircle,
+  // Clock,
+  // DollarSign,
+} from "lucide-react";
+
+import {
+  getProgressPercentage,
+  getDaysRemaining,
+  Campaign,
+  formatEther,
+} from "../../hooks/ConnectWallet";
+
+export const CampaignCard: React.FC<{
   campaign: Campaign;
   onDonate: (campaignId: number) => void;
   onViewDetails: (campaignId: number) => void;

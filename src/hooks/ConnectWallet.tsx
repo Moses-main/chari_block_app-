@@ -1,20 +1,25 @@
-import React, { useState, useEffect } from "react";
+// NEVER DELETE OR COMMENT OUT
+
+import React, {
+  useState,
+  //  useEffect
+} from "react";
 import {
-  Heart,
-  Users,
-  Target,
-  Calendar,
+  // Heart,
+  // Users,
+  // Target,
+  // Calendar,
   Wallet,
-  Plus,
-  Eye,
-  ArrowRight,
-  CheckCircle,
-  Clock,
-  DollarSign,
+  // Plus,
+  // Eye,
+  // ArrowRight,
+  // CheckCircle,
+  // Clock,
+  // DollarSign,
 } from "lucide-react";
 
 // Types
-interface Charity {
+export interface Charity {
   name: string;
   description: string;
   wallet_address: string;
@@ -24,7 +29,7 @@ interface Charity {
   registration_date: number;
 }
 
-interface Campaign {
+export interface Campaign {
   id: number;
   charity_address: string;
   title: string;
@@ -37,7 +42,7 @@ interface Campaign {
   total_donors: number;
 }
 
-interface Donation {
+export interface Donation {
   id: number;
   donor_address: string;
   campaign_id: number;
@@ -47,7 +52,7 @@ interface Donation {
 }
 
 // Mock Data
-const mockCampaigns: Campaign[] = [
+export const mockCampaigns: Campaign[] = [
   {
     id: 1,
     charity_address: "0x123...abc",
@@ -89,7 +94,7 @@ const mockCampaigns: Campaign[] = [
   },
 ];
 
-const mockDonations: Donation[] = [
+export const mockDonations: Donation[] = [
   {
     id: 1,
     donor_address: "0xabc...123",
@@ -109,28 +114,31 @@ const mockDonations: Donation[] = [
 ];
 
 // Utility Functions
-const formatEther = (wei: number): string => {
+export const formatEther = (wei: number): string => {
   return (wei / 1000000000000000000).toFixed(4);
 };
 
-const formatDate = (timestamp: number): string => {
+export const formatDate = (timestamp: number): string => {
   return new Date(timestamp).toLocaleDateString();
 };
 
-const getDaysRemaining = (deadline: number): number => {
+export const getDaysRemaining = (deadline: number): number => {
   const now = Date.now();
   const diff = deadline - now;
   return Math.max(0, Math.ceil(diff / (1000 * 60 * 60 * 24)));
 };
 
-const getProgressPercentage = (raised: number, target: number): number => {
+export const getProgressPercentage = (
+  raised: number,
+  target: number
+): number => {
   return Math.min(100, (raised / target) * 100);
 };
 
 // Components
-const ConnectWallet: React.FC<{ onConnect: (address: string) => void }> = ({
-  onConnect,
-}) => {
+export const ConnectWallet: React.FC<{
+  onConnect: (address: string) => void;
+}> = ({ onConnect }) => {
   const [isConnecting, setIsConnecting] = useState(false);
 
   const handleConnect = async () => {

@@ -8,8 +8,9 @@ import { Header } from "./components/Header";
 import { CampaignCard } from "./components/CampaignCard";
 import { DonationModal } from "./components/DonationModal";
 import { useWallet } from "./hooks/useWallet";
-import { formatDate } from "./utils/formatters";
-import { Clock, DollarSign } from "lucide-react";
+import { UserProfile } from "./components/UserProfile";
+// import { formatDate } from "./utils/formatters";
+// import { Clock, DollarSign } from "lucide-react";
 
 // Mock data
 const initialCampaigns: Campaign[] = [
@@ -104,6 +105,14 @@ const App: React.FC = () => {
         )}
 
         {activeTab === "profile" && walletConnected && (
+          <UserProfile
+            donations={donations}
+            campaigns={campaigns}
+            userAddress={userAddress}
+          />
+        )}
+
+        {/* {activeTab === "profile" && walletConnected && (
           <div className="space-y-4">
             <h2 className="text-2xl font-bold">Your Donations</h2>
             {donations
@@ -134,7 +143,7 @@ const App: React.FC = () => {
                 );
               })}
           </div>
-        )}
+        )} */}
       </main>
 
       {showModal && selectedCampaign && (

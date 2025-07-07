@@ -1,4 +1,26 @@
-const DonationModal: React.FC<{
+import {
+  //  Charity,
+  // Donation,
+  Campaign,
+} from "../../types/index";
+import {
+  //  useEffect,
+  useState,
+} from "react";
+import // formatAddress,
+// formatDate,
+// formatEth,
+// formatProgress,
+// formatTimeAgo,
+"@/utils/formatEther";
+
+import { getProgressPercentage } from "../../hooks/ConnectWallet";
+
+import {
+  formatAmount,
+  // formatDate
+} from "@/utils/formatters";
+export const DonationModal: React.FC<{
   campaign: Campaign | null;
   isOpen: boolean;
   onClose: () => void;
@@ -41,8 +63,8 @@ const DonationModal: React.FC<{
           <h3 className="font-semibold text-gray-900 mb-2">{campaign.title}</h3>
           <div className="bg-gray-50 rounded-lg p-4">
             <div className="flex justify-between text-sm mb-2">
-              <span>Target: ${formatEther(campaign.target_amount)}</span>
-              <span>Raised: ${formatEther(campaign.raised_amount)}</span>
+              <span>Target: ${formatAmount(campaign.target_amount)}</span>
+              <span>Raised: ${formatAmount(campaign.raised_amount)}</span>
             </div>
             <div className="w-full bg-gray-200 rounded-full h-2">
               <div
